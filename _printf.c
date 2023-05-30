@@ -18,27 +18,38 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == 'c')
+			if (*format == 'd' || *format == 'i')
 			{
-				char c = va_arg(args, int);
-
-				write(1, &c, 1);
-				printed_chars++;
-			}
-			else if (*format == 's')
-			{
-				char *s = va_arg(args, char *);
+				int num = va_arg(args, int);
+				int temp = num;
 				int len = 0;
+				char buffer[20];
 
-				while (s[len])
-					len++;
-				write(1, s, len);
-				printed_chars += len;
-			}
-			else if (*format == '%')
-			{
-				write(1, "%", 1);
-				printed_chars++;
+				if (temp == 0)
+				{
+					buffer[len++] = '0';
+				}
+				else
+				{
+					if (temp < 0)
+					{
+						write(1, "-", 1);
+						printed_chars++;
+						temp = -temp;
+					}
+					while (temp != 0)
+					{
+						int digit = temp % 10;
+						buffer[len++] = '0' + digit;
+						temp /= 10;
+					}
+				}
+				while (len > 0)
+				{
+					write(1, &buffer[len - 1], 1);
+					printed_chars++;
+					len--;
+				}
 			}
 		}
 		else
