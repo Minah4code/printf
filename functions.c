@@ -1,5 +1,4 @@
-#include "holberton.h"
-#include <unistd.h> 
+#include <unistd.h>
 
 /**
  * print_char - Prints a character to the standard output.
@@ -16,7 +15,7 @@ int print_char(va_list args, char buffer[],
 		int flags, int width, int precision, int *size)
 {
 	char c = va_arg(args, int);
-	
+
 	if (*size >= BUFFER_SIZE - 1)
 	{
 		write(1, buffer, *size);

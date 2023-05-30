@@ -1,77 +1,71 @@
 #include "main.h"
-#include <stdio.h>
+#include <unistd.h>
+
+int print_buffer(char *buffer, int size);
 
 /**
- * _printf - Prints output according to a format.
- * @format: A character string containing the format.
+ * _printf - Produces output according to a format.
+ * @format: A character string
+ * containing zero or more directives.
  *
  * Return: The number of characters printed.
  */
-int _printf(const char *format, ....)
+int _printf(const char *format, ...)
 {
-	va_list args;
-	int count = 0;
-	int buff_ind = 0;
-	char buffer[1024];
-	
-	va_start(args, format);
-	for (; *format != '\0'; format++)
-	{
-		if (*format != '%')
-		{
-			putchar(*format);
-			count++;
-		}
-		else
-		{
-			format++;
-			switch (*format)
-			{
-				case 'c':
-					{
-						int c = va_arg(args, int);
-						
-						putchar(c);
-						count++;
-						break;
-					}
-				case 's':
-					{
-						char *str = va_arg(args, char *);
-						
-						while (*str != '\0')
-						{
-							putchar(*str);
-							str++;
-							count++;
-						}
-						break;
-					}
-				case '%':
-					{
-						putchar('%');
-						count++;
-						break;
-					}
-				default:
-					break;
-			}
-		}
-	}
-	va_end(args);
-	return count;
-}
+    int printed_chars = 0;
+    va_list args;
+    char buffer[1024];
+    int i = 0;
+    int j = 0;
 
+    va_start(args, format);
+    while (format && format[i])
+    {
+	    if (format[i] == '%')
+	    {
+		    i++;
+		    if (format[i] == '\0')
+			    return (-1);
+		    j = handle_print(format, &i, args,
+				    buffer, 0, 0, 0, 1024);
+		    if (j == -1)
+			    return (-1);
+		    printed_chars += j;
+	    }
+	    else
+	    {
+		    buffer[0] = format[i];
+		    buffer[1] = '\0';
+		    write(1, buffer, 1);
+		    printed_chars++;
+	    }
+	    i++;
+    }
+    va_end(args);
+    return (printed_chars);
+}
 /**
- * print_buffer - Prints the buffer content and resets the buffer.
- * @buffer: The buffer containing the output.
- * @buff_ind: A pointer to the buffer index.
+ * print_buffer - Prints the contents of the buffer.
+ * @buffer: A pointer to the buffer containing the characters to be printed.
+ * @size: The number of characters in the buffer.
+ *
+ * Return: The total number of characters printed.
  */
-void print_buffer(char buffer[], int *buff_ind)
+int print_buffer(char *buffer, int size)
 {
-	for (int i = 0; i < *buff_ind; i++)
+	int total_chars_printed = 0;
+	int chars_written = 0;
+	int chars_left = size;
+	char *current_position = buffer;
+
+	while (chars_left > 0)
 	{
-		putchar(buffer[i]);
+		chars_written = write(1, current_position, chars_left);
+		if (chars_written <= 0)
+			return (-1);
+		total_chars_printed += chars_written;
+		chars_left -= chars_written;
+		current_position += chars_written;
 	}
-	*buff_ind = 0;
+	return (total_chars_printed);
 }
