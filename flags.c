@@ -1,5 +1,8 @@
 #include "main.h"
 
+#define F_HASH 1
+#define F_SPACE 2
+
 /**
  * get_flags - Calculates the active flags
  * by Aminah and Peace

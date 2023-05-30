@@ -11,13 +11,13 @@
  *
  * Return: The number of characters printed
  */
-int print_char(va_list types, char buffer[],
+int print_char(va_list args, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	char ch = va_arg(types, int);
 	int count = 0;
 
-	if (width > 0 && !(flags & FLAG_MINUS))
+	if (width > 0 && !(flags & F_MINUS))
 	{
 		while (count < width - 1)
 		{
@@ -27,7 +27,7 @@ int print_char(va_list types, char buffer[],
 	}
 	buffer[size++] = ch;
 	count++;
-	if (width > 0 && (flags & FLAG_MINUS))
+	if (width > 0 && (flags & F_MINUS))
 	{
 		while (count < width)
 		{

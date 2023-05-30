@@ -23,16 +23,16 @@ int handle_print(const char *fmt, int *ind, va_list list,
 	switch (*fmt)
 	{
 		case 'c':
-			printed_chars = print_char
+			printed_chars = print_char(args)
 				(list, buffer, flags, width, precision, size);
 			break;
 		case 's':
-			printed_chars = print_string
+			printed_chars = print_string(args)
 				(list, buffer, flags, width, precision, size);
 			break;
 		case 'd':
 		case 'i':
-			printed_chars = print_integer
+			printed_chars = print_integer(args)
 				(list, buffer, flags, width, precision, size);
 			break;
 		case 'u':

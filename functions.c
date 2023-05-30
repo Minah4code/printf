@@ -1,4 +1,6 @@
 #include <unistd.h>
+#include <unistd.h>
+#include <stdarg.h>
 
 /**
  * print_char - Prints a character to the standard output.

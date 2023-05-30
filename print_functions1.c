@@ -88,12 +88,12 @@ int print_hex(va_list args)
  *
  * Return: The number of characters printed.
  */
-int print_hex_number(unsigned int n, char *base)
+int print_hex_upper(unsigned int n, char *base)
 {
         int count = 0;
 
         if (n / 16)
-                count += print_hex_number(n / 16, base);
+                count += print_hex_upper(n / 16, base);
 
         _putchar(base[n % 16]);
         count++;
@@ -111,7 +111,7 @@ int print_HEX(va_list args)
         unsigned int num = va_arg(args, unsigned int);
         int count = 0;
 
-        count += print_hex_number(num, "0123456789ABCDEF");
+        count += print_hex_upper(num, "0123456789ABCDEF");
 
         return (count);
 }
