@@ -1,76 +1,53 @@
-#include "main.h"
-#include <stdio.h>
+#include <stdarg.h>
+#include <unistd.h>
 
 /**
- * _printf - Prints output according to a format.
- * @format: A character string containing the format.
+ * _printf - Produces output according to a format.
+ * @format: The format string.
  *
  * Return: The number of characters printed.
  */
-int _printf(const char *format, ....)
+int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
-	int buff_ind = 0;
-	char buffer[1024];
+	int printed_chars = 0;
 
 	va_start(args, format);
-	for (; *format != '\0'; format++)
+	while (*format)
 	{
-		if (*format != '%')
+		if (*format == '%')
 		{
-			putchar(*format);
-			count++;
+			format++;
+			if (*format == 'c')
+			{
+				char c = va_arg(args, int);
+
+				write(1, &c, 1);
+				printed_chars++;
+			}
+			else if (*format == 's')
+			{
+				char *s = va_arg(args, char *);
+				int len = 0;
+
+				while (s[len])
+					len++;
+				write(1, s, len);
+				printed_chars += len;
+			}
+			else if (*format == '%')
+			{
+				write(1, "%", 1);
+				printed_chars++;
+			}
 		}
 		else
 		{
-			format++;
-			switch (*format)
-			{
-				case 'c':
-					{
-						int c = va_arg(args, int);
-			
-						putchar(c);
-						count++;
-						break;
-					}
-				case 's':
-					{
-						char *str = va_arg(args, char *);
-				
-						while (*str != '\0')
-						{putchar(*str);
-							str++;
-							count++;
-						}
-						break;
-					}
-				case '%':
-					{
-						putchar('%');
-						count++;
-						break;
-					}
-				default:
-					break;
-			}
+			write(1, format, 1);
+			printed_chars++;
 		}
+		format++;
 	}
 	va_end(args);
-	return (count);
-}
-
-/**
- * print_buffer - Prints the buffer content and resets the buffer.
- * @buffer: The buffer containing the output.
- * @buff_ind: A pointer to the buffer index.
- */
-void print_buffer(char buffer[], int *buff_ind)
-{
-	for (int i = 0; i < *buff_ind; i++)
-	{
-		putchar(buffer[i]);
-	}
-	*buff_ind = 0;
+	return (printed_chars);
 }
