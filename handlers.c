@@ -13,12 +13,10 @@
  *
  * Return: The number of characters written
  */
-int write_unsgnd(int is_negative, int ind, char buffer[],
+int write_unsgnd(unsigned int num,
 		int flags, int width, int precision, int size)
 {
-	int printed_chars = 0;
-	int i;
-	int num_digits = ind;
+	int padding = width - num_digits;
 
 	if (precision > ind)num_digits = precision;
 	int padding = width - num_digits;

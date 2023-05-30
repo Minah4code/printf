@@ -29,7 +29,7 @@ long int convert_size_number(long int num, int size)
 	if (size == 'l')
 		return ((long int)num);
 	if (size == 'L')
-		return ((long long int)num);
+		return ((long int)num);
 	return (num);
 }
 
@@ -50,6 +50,6 @@ unsigned long int convert_size_unsgnd(unsigned long int num, int size)
 	if (size == 'l')
 		return ((unsigned long int)num);
 	if (size == 'L')
-		return ((unsigned long long int)num);
+		return ((unsigned long int)num);
 	return (num);
 }

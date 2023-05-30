@@ -13,8 +13,8 @@
  *
  * Return: The number of characters printed
  */
-int print_pointer(va_list types, char buffer[], int flags,
-		int width, int precision, int size)
+int print_pointer(va_list args,
+		char buffer[], int flags, int width, int precision, int size)
 {
 	void *ptr = va_arg(types, void *);
 
@@ -115,7 +115,7 @@ int print_string_rot13(va_list args)
  *
  * Return: The number of characters printed.
  */
-int print_rot13(char *s)
+int print_rot13(va_list args)
 {
         int count = 0;
         int i;
