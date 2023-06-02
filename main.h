@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -14,16 +12,9 @@
 #define F_PLUS 2
 #define F_ZERO 44
 
->>>>>>> e0d1751b818a970d5f1d01eaeb69feb951d661b9
 int _printf(const char *format, ...);
 int _putchar(char c);
 
-/**
- * struct print - Struct print
- *
- * @t: The format to print
- * @f: The function to print
- */
 typedef struct print
 {
     char *t;
@@ -48,4 +39,4 @@ int print_char(va_list args, char buffer[], int flags, int width, int precision,
 int print_pointer(va_list args, char buffer[], int flags, int width, int precision, int size);
 int handle_print(const char *format, int *i, va_list args, char buffer[], int *index);
 
-#endif /* MAIN_H */
+#endif
