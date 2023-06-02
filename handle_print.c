@@ -58,23 +58,19 @@ int handle_print(const char *fmt, int *ind, va_list list,
 	break;
 	case 'p':
 	printed_chars = print_pointer
-		(list, buffer, flags,
-		 width, precision, size);
+		(list, buffer, flags, width, precision, size);
 	break;
 	case 'r':
 	printed_chars = print_reversed
-		(list, buffer, flags,
-		 width, precision, size);
+		(list, buffer, flags, width, precision, size);
 	break;
 	case 'R':
 	printed_chars = print_rot13
-		(list, buffer, flags,
-		 width, precision, size);
+		(list, buffer, flags, width, precision, size);
 	break;
 	default:
 	printed_chars = print_unknown_specifier
-		(buffer, *ind,
-		 fmt, flags, width, size);
+		(buffer, *ind, fmt, flags, width, size);
 	(*ind)++;
 	break;
 	}
