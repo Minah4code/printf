@@ -3,8 +3,7 @@
 #include "main.h"
 #include <unistd.h>
 
-int handle_print(const char *format, int *i,
-va_list args, char buffer[], int width, int precision, int flags, int size);
+int handle_print(const char *format, int *i, va_list args, char buffer[], int *index)
 
 /**
  * _printf - Produces output according to a format.

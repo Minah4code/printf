@@ -10,9 +10,9 @@
  * @size: The total size of the buffer
  *
  * Return: The number of characters printed
- */
+**/
 int print_char(va_list args, char buffer[],
-		int flags, int width, int precision, int size)
+		int flags, int width, int precision, int size);
 {
 	char ch = va_arg(args, int);
 	int count = 0;

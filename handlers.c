@@ -10,8 +10,7 @@
  * @return The number of characters printed.
 */
 
-int write_unsgnd(unsigned int num,
-		int flags, int width, int precision, int size)
+int write_unsgnd(unsigned int num, int flags, int width, int precision, int size)
 {
 	int num_digits = get_num_digits(num);
 	int printed_chars = 0;

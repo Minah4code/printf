@@ -8,7 +8,7 @@
  *
  * Return: The size value
  */
-int get_size(const char *format, int *i, va_list va)
+int get_size(const char *format, int *i, va_list va);
 {
 	int size = 0;
 
