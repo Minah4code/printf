@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -12,6 +14,7 @@
 #define F_PLUS 2
 #define F_ZERO 44
 
+>>>>>>> e0d1751b818a970d5f1d01eaeb69feb951d661b9
 int _printf(const char *format, ...);
 int _putchar(char c);
 
