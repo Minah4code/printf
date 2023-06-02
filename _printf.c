@@ -3,20 +3,20 @@
 
 int _printf(const char *format, ...)
 {
-    va_list args;
-    va_start(args, format);
+va_list args;
+va_start(args, format);
 
-    int count = 0;
-    while (*format != '\0')
-    {
-        if (*format == '%')
-        {
-            format++; // move past '%'
+int count = 0;
+while (*format != '\0')
+{
+if (*format == '%')
+{
+format++; // move past '%'
 
-            // Handle format specifiers
-            switch (*format)
-            {
-                case 'c':
+// Handle format specifiers
+switch (*format)
+{
+case 'c':
                     count += putchar(va_arg(args, int));
                     break;
                 case 's':
